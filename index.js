@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, SlashCommandBuilder } = require('discord.js');
 require('dotenv').config()
 
 const client = new Client({
@@ -15,7 +15,7 @@ client.once('ready', () => {
 
 client.on('messageCreate', (message) => {
     if (message.author.bot) return;
-    message.channel.send(`Bạn vừa nói: ${message.content}`);
+    message.channel.send(`<@${message.author.id}>: ${message.content}`);
 })
 
 client.login(process.env.DISCORD_TOKEN)
