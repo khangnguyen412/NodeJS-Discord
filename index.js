@@ -1,21 +1,24 @@
-const { Client, GatewayIntentBits, SlashCommandBuilder } = require('discord.js');
-require('dotenv').config()
+require('dotenv').config();
+const util = require('util');
+const { exec } = require('child_process');
+
+const { Client, GatewayIntentBits } = require('discord.js');
+
 
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
-    ]
-})
+        GatewayIntentBits.MessageContent,
+    ],
+});
 
 client.once('ready', () => {
-    console.log(`Bot is ready ${client.user.tag}`)
-})
+    console.log(`✅ Bot ${client.user.tag} đã sẵn sàng!`);
+});
 
-client.on('messageCreate', (message) => {
-    if (message.author.bot) return;
-    message.channel.send(`<@${message.author.id}>: ${message.content}`);
-})
+client.on('messageCreate', async (message) => {
+});
 
-client.login(process.env.DISCORD_TOKEN)
+client.login(process.env.DISCORD_TOKEN);
